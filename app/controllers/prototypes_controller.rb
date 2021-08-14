@@ -11,7 +11,6 @@ class PrototypesController < ApplicationController
 
   def new
     @prototype = Prototype.new
-
   end
 
   def create
@@ -29,14 +28,9 @@ class PrototypesController < ApplicationController
   end
 
   def edit
-    @prototype = Prototype.find(params[:id])
-    unless user_signed_in?
-      redirect_to root_path
-    end
   end
 
   def update
-    @prototype = Prototype.find(params[:id])
     if @prototype.update(prototype_params)
       redirect_to prototype_path(@prototype)
     else
@@ -45,7 +39,7 @@ class PrototypesController < ApplicationController
   end
 
   def destroy
-    if prototype.destroy
+    if @prototype.destroy
       redirect_to root_path
     else
       redirect_to root_path
